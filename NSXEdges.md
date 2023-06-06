@@ -13,7 +13,9 @@ Failure domains can be configured with NSX APIs and are used to automatically pl
 
 ## Networking
 
-NSX Edge has minimum three networks configured
+
+NSX Edge has minimum three networks configured and each need its own VLAN. In theory, you can place Edge on same management VLAN as ESXi.
+
 
 1. Uplinks
 2. TEP - overlay networks
@@ -28,18 +30,17 @@ You need 5 Static IPs as mentioned below
 2. 2 x TEP (VLAN)
 3. 1 X Right VLAN
 4. 1 x Left VLAN
-5. 1 x RTEP VLAN (Future Proof)
+5. 1 x RTEP VLAN (NSX-T Federation)
 
 TEP VLANs must be routable to Host TEP VLANs and must be separate VLAN than Host TEP VLANs
-Management is mapped to eth0
-TEP01 and Right VLAN is mapped to fp-eth0
-TEP02 and left VLAN is mapped to fp-eth1
-Then these are connected to Trunk Portgroups of vDS Switch. 
+- Management is mapped to eth0
+- TEP01 and Right VLAN is mapped to fp-eth0
+- TEP02 and left VLAN is mapped to fp-eth1
+- Then these are connected to Trunk Portgroups of vDS Switch. 
 >In turn these are connected to trunk uplink portgroups on the VDS.
 
-
 ### Before you
-before you start deploying Edge, always remember that you need a Transport Zone based on VLAN. This transport zone must be VLAN based because on this transport zone you create Segments which again have right and left VLAN concept.
+Before you start deploying Edge, always remember that you need a Transport Zone based on VLAN. This transport zone must be VLAN based because on this transport zone you create Segments for the uplinks i.e.right and left VLAN.
 
 ### Transport Zone
 An NSX Edge belongs to at least one VLAN transport zone to provide the uplink access. It can belong to multiple VLAN transport zone and but it can belong to only one Overlay transport zone.
