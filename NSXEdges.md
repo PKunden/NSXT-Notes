@@ -13,7 +13,9 @@ Failure domains can be configured with NSX APIs and are used to automatically pl
 
 ## Networking
 
+
 NSX Edge has minimum three networks configured and each need its own VLAN. In theory, you can place Edge on same management VLAN as ESXi.
+
 
 1. Uplinks
 2. TEP - overlay networks
